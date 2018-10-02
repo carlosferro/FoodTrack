@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="evaluations-page">
+	<div class="container">
+		<div class="row">
+			{% block preevaluation%}{% endblock %}
+			{% block evaluation_content %}{% endblock %}
+			{% block evaluation_evaluation%}{% endblock %}
+		</div>
+	</div>
+</div>
+{% endblock %}

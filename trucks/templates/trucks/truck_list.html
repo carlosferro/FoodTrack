@@ -1,0 +1,29 @@
+{% extends "trucks/truck_base.html" %}
+
+{% block truck_content %}
+
+<div class="container">
+	<div class="card-columns">
+
+		{% for truck in object_list %}
+			<a class="list-truck-item" href="{% url 'trucks:single' slug=truck.slug %}">
+				<div class="card border-success mb-3">
+				  <div class="card-header bg-transparent border-success text-center"><h1 >{{ truck.name }}</h1></div>
+				  <div class="card-body text-success text-center">
+				    <p class="card-text">{{ truck.description_html|safe }}</p>
+				  </div>
+				  <div class="card-footer bg-transparent border-success text-center">
+						<span class="badge badge-primary">Follower{{ truck.followers.count|pluralize }}</span>
+						<span class="badge badge-secondary">{{ truck.followers.count }}</span>
+						<span class="badge badge-primary">Evaluation{{ truck.evaluations.count|pluralize }}</span>
+						<span class="badge badge-secondary">{{ truck.evaluations.count }}</span>
+					</div>
+				</div>
+			</a>
+		{% endfor %}
+
+	</div>
+
+</div>
+
+{% endblock %}

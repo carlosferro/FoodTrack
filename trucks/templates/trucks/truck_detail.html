@@ -1,0 +1,38 @@
+{% extends "trucks/truck_base.html" %}
+
+{% block pretruck %}
+
+<div class="container">
+  <div class="jumbotron">
+    <p class="h1">{{ truck.name }}</p>
+    <hr class="m-y-md">
+    <p class="h6">{{ truck.description }}</p>
+
+    <hr class="m-y-md">
+    {% if user in truck.followers.all %}
+      <a href="{% url 'trucks:unfollow' slug=truck.slug %}" class="btn btn-primary" role="button">
+        Unfollow
+    {% else %}
+      <a href="{% url 'trucks:follow' slug=truck.slug %}" class="btn btn-primary" role="button">
+        Follow
+    {% endif %}
+      </a>
+    <a href="{% url 'evaluations:create' pk=truck.pk %}" class="btn btn-primary" role="button">Evaluate</a>
+
+    {% if user == truck.user %}
+      <a href="{% url 'trucks:delete' pk=truck.pk %}" title="delete" class="btn btn-danger">Delete</a>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block truck_content %}
+
+	{% for evaluation in truck.evaluations.all %}
+		{% include "evaluations/_evaluation.html" %}
+	{% endfor %}
+
+{% endblock %}

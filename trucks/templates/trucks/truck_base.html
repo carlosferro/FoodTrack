@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    {% block pretruck %}{% endblock %}
+    {% block truck_content %}{% endblock %}
+    {% block evaluationtruck %}{% endblock %}
+  </div>
+</div>
+
+{% endblock %}

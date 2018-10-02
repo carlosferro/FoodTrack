@@ -1,0 +1,39 @@
+{% extends "evaluations/evaluation_base.html" %}
+
+{% load bootstrap4 %}
+
+{% block evaluation_content %}
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Create a new Evaluation
+    </div>
+    <div class="card-body">
+      <form method="post" action="{% url 'evaluations:create' view.kwargs.pk %}" id="evaluationForm">
+        {% csrf_token %}
+        {% bootstrap_form_errors form %}
+        {% bootstrap_field form.message %}
+        <div class="form-group">
+          <fieldset class="rating">
+            {% for radio in form.rating %}
+              {{ radio.tag }}
+              <label class="full" for="{{ radio.id_for_label }}"></label>
+            {% endfor %}
+          </fieldset>
+        </div>
+        <br>
+        <br>
+        {# {% buttons submit='OK' reset="Cancel" %}{% endbuttons %} #}
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span> Save
+          </button>
+          <a href="{% url 'home' %}" class="btn btn-default">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

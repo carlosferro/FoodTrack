@@ -1,0 +1,21 @@
+{% extends "evaluations/evaluation_base.html" %}
+
+{% block preevaluation %}
+
+<div class="container">
+	<div class="alert alert-primary" role="alert">
+	  @{{ evaluation_user.username }} Evaluations
+	</div>
+</div>
+
+{% endblock %}
+
+{% block evaluation_content %}
+
+	{% for evaluation in evaluation_list %}
+		{% include "evaluations/_evaluation.html" %}
+	{% endfor %}
+
+
+
+{% endblock %}
